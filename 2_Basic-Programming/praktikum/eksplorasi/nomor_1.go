@@ -27,7 +27,7 @@ func main()  {
 	}
 
 	fmt.Println("Captured: " + kalimat )
-	if palindorm==true {
+	if palindorm == true {
 		fmt.Println("Palindorm")
 	}else{
 		fmt.Println("Bukan Palindorm")
