@@ -1,9 +1,10 @@
 package main
 
 import (
-	"fmt"
 	"bufio"
+	"fmt"
 	"os"
+	"strings"
 )
 
 func main()  {
@@ -12,19 +13,20 @@ func main()  {
 	fmt.Print("Masukkan kata : ")
 	kalimat,_:=reader.ReadString('\n')
 
+	kalimat = strings.TrimSpace(kalimat)
+
 	palindorm := true
 	
 	panjang_kalimat := len(kalimat)
 
-	for i := 0; i < panjang_kalimat; i++ {
+	for i := 0; i < panjang_kalimat/2; i++ {
 		if kalimat[i] != kalimat[panjang_kalimat-i-1]{
-			palindorm = true
-		}else{		
 			palindorm = false
+			break
 		}
 	}
 
-	fmt.Print("Captured: " + kalimat )
+	fmt.Println("Captured: " + kalimat )
 	if palindorm==true {
 		fmt.Println("Palindorm")
 	}else{

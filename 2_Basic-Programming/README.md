@@ -1,3 +1,5 @@
+#Basic Programming
+
 * untuk menjalankan file golang diperlukan import package main untuk init main file.
 
 * import yang diperlukan sama seperti C++ dan untuk fungsi dasar melakukan import "fmt".
