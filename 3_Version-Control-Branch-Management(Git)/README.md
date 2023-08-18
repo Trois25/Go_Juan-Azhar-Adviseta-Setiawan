@@ -1,5 +1,4 @@
 #version control and branch management(git)
-
 *versioning adalah pengaturan versi/pelacakan perubahan pada code kita
 
 * Version Control system yang akan digunakan adalah GIT yang mana dapat melakukan kolaborasi dengan software enginer lainnya
