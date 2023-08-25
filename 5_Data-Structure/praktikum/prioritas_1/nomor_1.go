@@ -7,9 +7,25 @@ import "fmt"
 func ArrayMerge(arrayA, arrayB []string) []string {
 
 // your code here
-return append(arrayA,arrayB...)
+uniqueValue := make(map[string]bool)
 
+for _, v := range arrayA {
+	uniqueValue[v] = true
 }
+
+for _, v := range arrayB {
+	uniqueValue[v] = true
+}
+
+newArray := make([]string,0,len(uniqueValue))
+for v:= range uniqueValue{
+	newArray = append(newArray,v)
+}
+
+return newArray
+	
+}
+
 
 
 func main() {
