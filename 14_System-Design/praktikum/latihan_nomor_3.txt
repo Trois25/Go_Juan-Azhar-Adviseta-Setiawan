@@ -1,0 +1,10 @@
+Terdapat sebuah query pada SQL yaitu SELECT * FROM users; Dengan tujuan yang sama, tuliskan dalam bentuk perintah:
+a. Redis 
+==> KEYS * 
+
+b. Neo4j
+==> MATCH (user:users)
+    RETURN user
+
+c. Cassandra
+==> SELECT * FROM users;
