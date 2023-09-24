@@ -17,7 +17,7 @@ func GetUsersController(c echo.Context) error {
 
 	var users []models.User
 
-	if err := config.DB.Find(&users).Error; err != nil {
+	if err := config.DB.Preload("Blogs").Find(&users).Error; err != nil {
 
 		return c.JSON(http.StatusBadRequest,helpers.FailedResponse("error get data"))
 

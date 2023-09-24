@@ -13,5 +13,5 @@ type User struct {
 
 	Password string `json:"password" form:"password"`
 
-	Blog []Blog
+	Blogs []Blog
 }
