@@ -72,7 +72,7 @@ func (handler *UserController) Login(c echo.Context) error {
 		Password: input.Password,
 	}
 	
-	data,_, err := handler.userUsecase.Login(data.Email,data.Password)
+	data,token, err := handler.userUsecase.Login(data.Email,data.Password)
 	if err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]any{
 			"message": "error login",
@@ -82,5 +82,6 @@ func (handler *UserController) Login(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]any{
 		"message": "login success",
 		"email":    data.Email,
+		"token": token,
 	})
 }

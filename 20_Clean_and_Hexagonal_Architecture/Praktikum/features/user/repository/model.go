@@ -10,8 +10,10 @@ type User struct {
 }
 
 type UserResponse struct {
+	ID        uint   `json:"id"`
 	Email     string `json:"email"`
 	Password  string `json:"password"`
 	CreatedAt string `json:"created"`
 	UpdatedAt string `json:"updated"`
+	Token     string `json:"token"`
 }

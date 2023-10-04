@@ -8,6 +8,7 @@ type UserCore struct {
 	Password  string
 	CreatedAt time.Time
 	UpdatedAt time.Time
+	Token string
 }
 
 type DataInterface interface {

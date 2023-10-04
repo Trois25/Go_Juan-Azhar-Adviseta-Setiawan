@@ -1,6 +1,7 @@
 package repository
 
 import (
+	"belajar-go-echo/app/middlewares"
 	"belajar-go-echo/features/user"
 	"fmt"
 
@@ -20,6 +21,15 @@ func (userRep *userRepository) Login(email string, password string) (user.UserCo
 		return user.UserCore{}, "", tx.Error
 	}
 
+	var token string
+	if tx.RowsAffected > 0 {
+		var errToken error
+		token, errToken = middlewares.CreateToken(int(data.ID),data.Email)
+		if errToken != nil {
+			return user.UserCore{}, "", errToken
+		}
+	}
+
 	var check = user.UserCore{
 		ID:        data.ID,
 		Email:     data.Email,
@@ -28,7 +38,7 @@ func (userRep *userRepository) Login(email string, password string) (user.UserCo
 		UpdatedAt: data.UpdatedAt,
 	}
 
-	return check,"Login Success",nil
+	return check,token,nil
 }
 
 // GetAllUsers implements user.DataInterface.

@@ -16,14 +16,14 @@ func (uc *userUsecase) Login(email string, password string) (user.UserCore, stri
 	}
 
 	// Call the repository function to perform the login
-	logindata, _, err := uc.userRepository.Login(email, password)
+	logindata, token, err := uc.userRepository.Login(email, password)
 	if err != nil {
 		// Handle the error from the repository
-		return user.UserCore{}, "login error", err
+		return user.UserCore{}, "", err
 	}
 
 	// Return the login data and a success message
-	return logindata, "login success", nil
+	return logindata, token, nil
 
 }
 
