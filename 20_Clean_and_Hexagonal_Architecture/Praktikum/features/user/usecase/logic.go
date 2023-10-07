@@ -9,6 +9,15 @@ type userUsecase struct {
 	userRepository user.DataInterface
 }
 
+// Insert implements user.UseCaseInterface.
+func (uc *userUsecase) Insert(data user.UserCore) (row int, err error) {
+	if data.Email == "" || data.Password == "" {
+		return 0, errors.New("error, email or password can't be empty")
+	}
+	erruser, _ := uc.userRepository.Insert(data)
+	return erruser, nil
+}
+
 // Login implements user.UseCaseInterface.
 func (uc *userUsecase) Login(email string, password string) (user.UserCore, string, error) {
 	if email == "" || password == "" {
@@ -34,15 +43,6 @@ func (uc *userUsecase) GetAllUsers() ([]user.UserCore, error) {
 		return nil, errors.New("error get data")
 	}
 	return users, nil
-}
-
-// Create implements user.UseCaseInterface.
-func (uc *userUsecase) Create(data user.UserCore) error {
-	if data.Email == "" || data.Password == "" {
-		return errors.New("error, email or password can't be empty")
-	}
-	err := uc.userRepository.Insert(data)
-	return err
 }
 
 func New(Useruc user.DataInterface) user.UseCaseInterface {

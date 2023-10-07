@@ -12,6 +12,20 @@ type userRepository struct {
 	db *gorm.DB
 }
 
+// Insert implements user.DataInterface.
+func (userRep *userRepository) Insert(data user.UserCore) (row int, err error) {
+	var input = User{
+		Email:    data.Email,
+		Password: data.Password,
+	}
+
+	erruser := userRep.db.Save(&input)
+	if erruser.Error != nil {
+		return 0, erruser.Error
+	}
+	return 1, nil
+}
+
 // CheckByEmail implements user.DataInterface.
 func (userRep *userRepository) Login(email string, password string) (user.UserCore, string, error) {
 	var data User
@@ -24,7 +38,7 @@ func (userRep *userRepository) Login(email string, password string) (user.UserCo
 	var token string
 	if tx.RowsAffected > 0 {
 		var errToken error
-		token, errToken = middlewares.CreateToken(int(data.ID),data.Email)
+		token, errToken = middlewares.CreateToken(int(data.ID), data.Email)
 		if errToken != nil {
 			return user.UserCore{}, "", errToken
 		}
@@ -38,7 +52,7 @@ func (userRep *userRepository) Login(email string, password string) (user.UserCo
 		UpdatedAt: data.UpdatedAt,
 	}
 
-	return check,token,nil
+	return check, token, nil
 }
 
 // GetAllUsers implements user.DataInterface.
@@ -64,20 +78,6 @@ func (userRep *userRepository) GetAllUsers() ([]user.UserCore, error) {
 	fmt.Println("data :", data)
 
 	return data, nil
-}
-
-// Insert implements user.DataInterface.
-func (userRep *userRepository) Insert(data user.UserCore) error {
-	var input = User{
-		Email:    data.Email,
-		Password: data.Password,
-	}
-
-	err := userRep.db.Save(&input)
-	if err.Error != nil {
-		return err.Error
-	}
-	return nil
 }
 
 func New(db *gorm.DB) user.DataInterface {

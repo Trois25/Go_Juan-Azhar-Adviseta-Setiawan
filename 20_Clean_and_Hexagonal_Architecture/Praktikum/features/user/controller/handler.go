@@ -31,8 +31,8 @@ func (handler *UserController) CreateUser(c echo.Context) error {
 		Password: input.Password,
 	}
 
-	err := handler.userUsecase.Create(data)
-	if err != nil {
+	row,errusers:= handler.userUsecase.Insert(data)
+	if errusers != nil {
 		return c.JSON(http.StatusBadRequest, map[string]any{
 			"message": "error insert data",
 		})
@@ -40,6 +40,7 @@ func (handler *UserController) CreateUser(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]any{
 		"message": "success insert data",
+		"data" : row,
 	})
 }
 
