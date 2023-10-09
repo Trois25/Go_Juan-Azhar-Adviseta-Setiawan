@@ -1,37 +1,17 @@
 package main
 
 import (
-	"belajar-go-echo/app/configs"
-	"belajar-go-echo/app/database"
-	"belajar-go-echo/app/migration"
-	"belajar-go-echo/app/router"
-	"fmt"
+	"praktikum/routes"
 
-	"github.com/labstack/echo/v4"
+	"praktikum/config"
 )
 
 func main() {
-	// db, err := configs.InitConfig()
-	// if err != nil {
-	// 	panic(err)
-	// }
 
-	// err = migration.InitMigrationMysql(db)
-	// if err != nil {
-	// 	panic(err)
-	// }
+	config.InitDB()
 
-	// app := echo.New()
-	// app.GET("/users", controller.GetAllUsers(db))
-	// app.POST("/users", controller.CreateUser(db))
-	// app.Start(":8080")
+	e := routes.New()
 
-	cfg := configs.InitConfig()
-	db := database.InitDBMysql(cfg)
-	migration.InitMigrationMysql(db)
+	e.Logger.Fatal(e.Start(":3000"))
 
-	e := echo.New()
-
-	router.InitRouter(db, e)
-	e.Logger.Fatal(e.Start(fmt.Sprintf(":%d", cfg.SERVERPORT)))
 }
