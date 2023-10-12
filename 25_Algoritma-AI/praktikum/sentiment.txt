@@ -1,0 +1,10 @@
+=> Terdapat sekumpulan data mengenai tulisan dalam bentuk tweet mengenai sebuah kebijakan. 
+Sekumpulan data tersebut ingin dikelompokkan berdasarkan sentimen dari tweet tersebut yaitu sentimen positif dan negatif. 
+Jelaskan algoritma A.I. yang dapat digunakan untuk mengelompokkan tweet tersebut beserta alasannya.
+
+=> Algoritma yang akan saya gunakan adalah Naive Bayes, pemilihan saya untuk menggunakan naive bayes karena algoritma ini merupakan algoritma 
+yang simpel dan efektif untuk melakukan klasifikasi text. Menggunakan algoritma naive bayes kita dapat melakukan perhitungan kemungkinan berdasarkan 
+data text dari tweet tersebut apakah masuk kedalam kelas sentiment yang sesuai, contohnya seperti positif, negatif dan netral. 
+Setelah selesai membagi setiap kata menggunakan klasifikasi naive bayes kita dapat mulai menghitung banyaknya kata negatif, positif atau netral dalam 
+setiap post komentar dan memberikan label pada komentar berdasarkan persentase terbanyak sentiment-nya. Setelah selesai memberikan label 
+barulah kita dapat melakukan pengelompokkan setiap komentar berdasarkan sentiment-nya apakah termasuk positif, negatif atau netral.
